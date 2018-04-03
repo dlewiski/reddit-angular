@@ -1,0 +1,19 @@
+.topbar {
+  display: block;
+  width: 100% auto;
+  background-color: #F0F0F0;
+  height: 18px;
+  font-size: 8pt;
+  border-bottom: 0.3px solid rgba(0,0,0,0.7);
+  padding-top: 2px;
+  padding-left: 5vw;
+}
+
+ul, li {
+  text-decoration: none;
+  list-style: none;
+  display: inline-block;
+}
+
+li {
+}

@@ -1,0 +1,11 @@
+#logo-bar {
+  background-color: #CFE4F7;
+  width: 100% auto;
+  height: 45px;
+  border-bottom: rgba(0, 69, 130, 0.4) 1px solid;
+}
+
+img {
+  height: 40px;
+  margin-top: 2px;
+}

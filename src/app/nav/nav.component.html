@@ -1,10 +1,7 @@
-<nav class="navbar navbar-default">
+<div class="topbar">
   <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" routerLink="">Epicodus Tunes</a>
-    </div>
-    <ul class="nav navbar-nav navbar-right">
-      <li *ngFor="let subreddit of subreddits">{{subreddit}}</li>
+    <ul class="subreddits">
+      <li (click)="goToPosts(subreddit)" *ngFor="let subreddit of subreddits">{{subreddit}} &nbsp; - &nbsp;</li>
     </ul>
   </div>
-</nav>
+</div>

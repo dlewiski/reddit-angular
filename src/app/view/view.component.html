@@ -1,7 +1,7 @@
 <div>
   <table class="table-hover">
     <tbody>
-      <div *ngFor="let userPost of userPosts">
+      <div *ngFor="let userPost of userPosts | async">
       <a href="{{userPost.link}}"><tr>
         <td>{{userPost.voteCounter}}</td>
         <td><img src="{{userPost.imgLink}}" alt="pic of post"></td>

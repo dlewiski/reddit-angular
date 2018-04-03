@@ -1,18 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UserPost } from '../user-post.model';
-import { USERPOSTS } from '../mock-user-posts';
+import { UserPostService } from '../user-post.service';
+import { FirebaseListObservable } from 'angularfire2/database';
 
 @Component({
   selector: 'app-view',
   templateUrl: './view.component.html',
-  styleUrls: ['./view.component.css']
+  styleUrls: ['./view.component.css'],
+  providers: [UserPostService]
 })
-export class ViewComponent  {
-  userPosts = USERPOSTS;
+export class ViewComponent implements OnInit  {
+  userPosts: FirebaseListObservable<any[]>;
 
-  constructor() { }
+  constructor(private userPostService: UserPostService) { }
 
   ngOnInit() {
+    this.userPosts = this.userPostService.getUserPosts();
   }
 
 }

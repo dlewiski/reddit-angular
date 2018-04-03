@@ -1,30 +1,41 @@
 import { Component, OnInit } from '@angular/core';
 import { UserPost } from '../user-post.model';
-import { USERPOSTS } from '../mock-user-posts';
+import { UserPostService } from '../user-post.service';
+import { FirebaseListObservable } from 'angularfire2/database';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
-  styleUrls: ['./nav.component.css']
+  styleUrls: ['./nav.component.css'],
+  providers: [UserPostService]
 })
 export class NavComponent implements OnInit {
-  userPosts = USERPOSTS;
+  userPosts: FirebaseListObservable<any[]>;
   subreddits = null;
 
-  listSubreddits(userPosts: UserPost[]){
+  constructor(private userPostService: UserPostService, private router: Router) { }
+
+  ngOnInit() {
+    this.userPosts = this.userPostService.getUserPosts();
+    this.subreddits = this.listSubreddits();
+  }
+
+  listSubreddits(){
     let uniqueSubreddits = [];
     this.userPosts.forEach(function(redditPost){
-      if(!uniqueSubreddits.includes(redditPost.subreddit)) {
-        uniqueSubreddits.push(redditPost.subreddit);
-        console.log(redditPost.subreddit);
-      }
+      redditPost.forEach(function(post) {
+        if(!uniqueSubreddits.includes(post.subreddit)) {
+          uniqueSubreddits.push(post.subreddit);
+
+        }
+      })
     })
     return uniqueSubreddits;
   };
-  constructor() { }
 
-  ngOnInit() {
-    this.subreddits = this.listSubreddits(this.userPosts);
-  }
+  goToPosts(clickedSubreddit: string) {
+  this.router.navigate(['r', clickedSubreddit]);
+};
 
 }
